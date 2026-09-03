@@ -8,8 +8,6 @@ The user stays in control: review and edit every extracted requirement, approve 
 
 [![Six-step CCW Copilot user journey](docs/user-journey.svg)](docs/user-journey.svg)
 
-[View the workflow at full size ↔](docs/user-journey.svg)
-
 | Step | What you do | What CCW Copilot does |
 | --- | --- | --- |
 | 1. Configure | Choose an extraction provider and model, then enter the required tokens. | Connects the side panel to the local companion and prepares the selected LLM. |
