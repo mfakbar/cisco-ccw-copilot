@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="230" viewBox="0 0 1280 230" role="img" aria-labelledby="title description">
+  <title id="title">CCW Copilot user journey</title>
+  <desc id="description">Six steps grouped into prerequisites, preparing requirements, building a recommendation, and reviewing and applying components.</desc>
+  <style>
+    text { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; fill: #1f2328; }
+    .group { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
+    .step { fill: #ffffff; stroke: #d0d7de; stroke-width: 1; }
+    .group-label { font-size: 14px; font-weight: 500; fill: #57606a; }
+    .step-title { font-size: 16px; font-weight: 500; }
+    .step-detail { font-size: 12px; fill: #57606a; }
+    .number { fill: #0969da; }
+    .number-label { font-size: 13px; font-weight: 500; fill: #ffffff; text-anchor: middle; dominant-baseline: central; }
+    .arrow { fill: none; stroke: #57606a; stroke-width: 2; marker-end: url(#arrowhead); }
+    @media (prefers-color-scheme: dark) {
+      text { fill: #f0f6fc; }
+      .group { fill: #161b22; stroke: #30363d; }
+      .step { fill: #0d1117; stroke: #30363d; }
+      .group-label, .step-detail { fill: #8b949e; }
+      .number { fill: #1f6feb; }
+      .number-label { fill: #ffffff; }
+      .arrow { stroke: #8b949e; }
+    }
+  </style>
+  <defs>
+    <marker id="arrowhead" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L8,4 L0,8 Z" fill="#57606a"/>
+    </marker>
+  </defs>
+
+  <rect class="group" x="20" y="16" width="330" height="198" rx="12"/>
+  <text class="group-label" x="40" y="46">PREREQUISITES</text>
+  <rect class="step" x="40" y="68" width="135" height="118" rx="10"/>
+  <circle class="number" cx="62" cy="92" r="14"/>
+  <text class="number-label" x="62" y="92">1</text>
+  <text class="step-title" x="54" y="125">Configure</text>
+  <text class="step-detail" x="54" y="148">Provider · model</text>
+  <text class="step-detail" x="54" y="166">Tokens</text>
+  <path class="arrow" d="M178 127 H191"/>
+  <rect class="step" x="195" y="68" width="135" height="118" rx="10"/>
+  <circle class="number" cx="217" cy="92" r="14"/>
+  <text class="number-label" x="217" y="92">2</text>
+  <text class="step-title" x="209" y="125">Set preferences</text>
+  <text class="step-detail" x="209" y="148">Lead time</text>
+  <text class="step-detail" x="209" y="166">Constraints</text>
+
+  <path class="arrow" d="M333 127 H386"/>
+
+  <rect class="group" x="370" y="16" width="330" height="198" rx="12"/>
+  <text class="group-label" x="390" y="46">PREPARE REQUIREMENTS</text>
+  <rect class="step" x="390" y="68" width="135" height="118" rx="10"/>
+  <circle class="number" cx="412" cy="92" r="14"/>
+  <text class="number-label" x="412" y="92">3</text>
+  <text class="step-title" x="404" y="125">Add RFP</text>
+  <text class="step-detail" x="404" y="148">Paste</text>
+  <text class="step-detail" x="404" y="166">Extract</text>
+  <path class="arrow" d="M528 127 H541"/>
+  <rect class="step" x="545" y="68" width="135" height="118" rx="10"/>
+  <circle class="number" cx="567" cy="92" r="14"/>
+  <text class="number-label" x="567" y="92">4</text>
+  <text class="step-title" x="559" y="125">Review</text>
+  <text class="step-detail" x="559" y="148">Correct</text>
+  <text class="step-detail" x="559" y="166">Clarify</text>
+
+  <path class="arrow" d="M683 127 H736"/>
+
+  <rect class="group" x="720" y="16" width="250" height="198" rx="12"/>
+  <text class="group-label" x="740" y="46">BUILD RECOMMENDATION</text>
+  <rect class="step" x="740" y="68" width="210" height="118" rx="10"/>
+  <circle class="number" cx="762" cy="92" r="14"/>
+  <text class="number-label" x="762" y="92">5</text>
+  <text class="step-title" x="754" y="125">Scan CCW</text>
+  <text class="step-detail" x="754" y="148">Read-only catalog scan</text>
+  <text class="step-detail" x="754" y="166">Build recommendation</text>
+
+  <path class="arrow" d="M953 127 H1006"/>
+
+  <rect class="group" x="990" y="16" width="270" height="198" rx="12"/>
+  <text class="group-label" x="1010" y="46">REVIEW AND APPLY</text>
+  <rect class="step" x="1010" y="68" width="230" height="118" rx="10"/>
+  <circle class="number" cx="1032" cy="92" r="14"/>
+  <text class="number-label" x="1032" y="92">6</text>
+  <text class="step-title" x="1024" y="125">Approve</text>
+  <text class="step-detail" x="1024" y="148">One component at a time</text>
+  <text class="step-detail" x="1024" y="166">Apply and verify</text>
+</svg>
