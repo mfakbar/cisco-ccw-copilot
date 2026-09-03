@@ -1,0 +1,20 @@
+[
+  {
+    "id": "c240-gpu-only-hardware",
+    "expected": {
+      "gpuCount": { "value": 1 },
+      "gpuMemoryGb": { "value": 24, "unit": "GB" },
+      "maxLeadTimeDays": { "value": 45, "unit": "days" }
+    }
+  },
+  {
+    "id": "c240-gpu-high-memory-two-cpu",
+    "expected": {
+      "cpuSockets": { "value": 2 },
+      "cpuTotalCores": { "value": 48 },
+      "gpuCount": { "value": 1 },
+      "gpuMemoryGb": { "value": 96, "unit": "GB" },
+      "maxLeadTimeDays": { "value": 182, "unit": "days" }
+    }
+  }
+]

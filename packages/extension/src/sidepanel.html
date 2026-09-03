@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CCW Copilot</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header>
+    <div class="brand">CCW Copilot</div>
+    <div class="header-actions">
+      <div id="status" class="status" role="status" aria-live="polite" aria-atomic="true">Ready</div>
+      <button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch appearance" title="Switch appearance">
+        <span class="theme-toggle-icon" aria-hidden="true">◐</span>
+      </button>
+    </div>
+  </header>
+
+  <nav role="tablist" aria-label="Copilot sections">
+    <button id="requirementsTab" type="button" role="tab" aria-controls="requirements" aria-selected="true" data-view="requirements" class="active">Requirements</button>
+    <button id="ccwTab" type="button" role="tab" aria-controls="ccw" aria-selected="false" tabindex="-1" data-view="ccw">CCW</button>
+    <button id="settingsTab" type="button" role="tab" aria-controls="settings" aria-selected="false" tabindex="-1" data-view="settings">Settings</button>
+  </nav>
+
+  <main>
+    <section id="requirements" class="view active" role="tabpanel" aria-labelledby="requirementsTab">
+      <h1>What does the customer need?</h1>
+      <p class="section-intro">Add the delivery target and source requirements, then review every extracted value.</p>
+
+      <label>Target lead time (days)
+        <input id="targetLeadTime" type="number" min="0" max="182" step="1" placeholder="Optional, for example 35">
+        <span class="hint">The slowest selected component must be within this target.</span>
+      </label>
+
+      <details class="advanced-constraints">
+        <summary><span class="summary-label">Constraints preference</span><span class="summary-note">Optional hard rules</span></summary>
+        <div class="advanced-constraints-body">
+          <p class="hint">Values entered here override conflicting RFP wording. Leave a field blank to follow the RFP.</p>
+          <label>CPU sockets
+            <input id="preferredCpuSockets" type="number" min="1" max="2" step="1" placeholder="Optional, 1 or 2">
+            <span class="hint">Exact CPU socket count.</span>
+          </label>
+          <label>Memory modules (DIMMs)
+            <input id="preferredMemoryModules" type="number" min="1" max="32" step="1" placeholder="Optional, maximum 32">
+            <span class="hint">Exact DIMM count; C2xx and X21x support at most 32.</span>
+          </label>
+          <label>Maximum local capacity drives
+            <input id="maxLocalDriveCount" type="number" min="1" max="28" step="1" placeholder="Optional, for example 8">
+            <span class="hint">Caps local-storage drive quantity per server and preserves remaining bays. Boot drives are excluded.</span>
+          </label>
+        </div>
+      </details>
+
+      <p id="appliedConstraintsPreview" class="meta constraint-preview" hidden></p>
+
+      <label>Paste RFP text
+        <textarea id="rfpText" rows="9" placeholder="Paste the relevant RFP requirements here…"></textarea>
+      </label>
+      <div id="fileUploadField" hidden>
+        <label>Upload a file <span class="beta-badge">Beta</span>
+          <input id="rfpFile" type="file" accept=".pdf,.docx,.xlsx,.xls,.txt">
+          <span class="hint">Optional beta feature. File extraction has not been extensively tested; review every extracted value.</span>
+        </label>
+      </div>
+      <button id="extract" type="button" class="primary action-primary">Extract requirements</button>
+      <section id="clarificationPanel" class="clarification-panel" aria-labelledby="clarificationTitle" aria-live="polite" hidden>
+        <h2 id="clarificationTitle">Clarifications</h2>
+        <p>Answer when possible. Only the affected category or group will wait.</p>
+        <ol id="clarificationList"></ol>
+      </section>
+      <div id="requirementsList"></div>
+    </section>
+
+    <section id="ccw" class="view" role="tabpanel" aria-labelledby="ccwTab">
+      <h1>Current CCW draft</h1>
+      <p class="section-intro">Scan the open draft for current components, pricing, and lead times, then review a tailored recommendation.</p>
+      <div class="ccw-actions">
+        <button id="scan" type="button" class="primary" aria-describedby="scanSafetyNote">Scan and recommend</button>
+        <button id="recommendOnly" type="button" class="secondary">Recommend only</button>
+      </div>
+      <p id="scanSafetyNote" class="scan-safety-note">Read-only scan. No components or quantities are changed.</p>
+      <div class="stored-scan-status">
+        <span class="stored-scan-status-icon" aria-hidden="true"></span>
+        <p id="storedScanStatus" class="meta">No stored CCW scan yet.</p>
+      </div>
+      <div id="scanProgress" class="scan-progress" aria-labelledby="scanProgressTitle" aria-describedby="scanProgressText scanProgressAssurance" data-state="connecting" hidden>
+        <div class="scan-progress-heading">
+          <span class="scan-progress-symbol" aria-hidden="true"><span></span></span>
+          <span class="scan-progress-copy">
+            <span id="scanProgressEyebrow" class="scan-progress-eyebrow">Scanning CCW</span>
+            <strong id="scanProgressTitle" role="status" aria-live="polite" aria-atomic="true">Connecting to the current draft</strong>
+            <span id="scanProgressText">Preparing a read-only catalog scan…</span>
+          </span>
+        </div>
+        <progress id="scanProgressBar" value="0" max="1" aria-label="CCW scan progress"></progress>
+        <div class="scan-progress-meta" aria-hidden="true">
+          <span id="scanProgressCount">0 components found</span>
+          <span id="scanProgressPosition">Preparing</span>
+        </div>
+        <ol class="scan-steps" aria-label="Scan stages">
+          <li data-scan-step="connect"><span class="scan-step-marker" aria-hidden="true"></span><span>Connect</span></li>
+          <li data-scan-step="catalog"><span class="scan-step-marker" aria-hidden="true"></span><span>Read catalog</span></li>
+          <li data-scan-step="recommend"><span class="scan-step-marker" aria-hidden="true"></span><span>Recommend</span></li>
+        </ol>
+        <p id="scanProgressAssurance" class="scan-progress-assurance">CCW Copilot will return to the category you started from.</p>
+      </div>
+      <div id="snapshot"></div>
+    </section>
+
+    <section id="settings" class="view" role="tabpanel" aria-labelledby="settingsTab">
+      <h1>Processing</h1>
+      <p class="section-intro">Choose where requirements are processed. Local Ollama keeps the supplied RFP text on this Mac; CircuIT uses Cisco's internal AI service.</p>
+      <label>Provider
+        <select id="provider">
+          <option value="local">Local Ollama</option>
+          <option value="circuit">CircuIT (Cisco internal)</option>
+        </select>
+      </label>
+      <label>Companion session token
+        <input id="token" type="password" autocomplete="off">
+      </label>
+      <label>Model
+        <select id="model">
+          <option value="">Use recommended default</option>
+        </select>
+        <span id="modelHint" class="hint">Local models are loaded from Ollama on this Mac.</span>
+      </label>
+      <button id="refreshModels" type="button" class="secondary action-primary">Refresh local models</button>
+      <div id="circuitCredentials" hidden>
+        <label>CircuIT access token
+          <input id="circuitToken" type="password" autocomplete="off" autocapitalize="off" spellcheck="false" aria-describedby="circuitTokenHint">
+          <span id="circuitTokenHint" class="hint">Paste a current one-hour token. It stays in this side panel and is never saved.</span>
+        </label>
+      </div>
+
+      <section class="beta-settings" aria-labelledby="betaSettingsTitle">
+        <h2 id="betaSettingsTitle">Beta features</h2>
+        <label class="feature-setting" for="fileUploadBetaEnabled">
+          <span class="feature-setting-copy">
+            <span>File upload <span class="beta-badge">Beta</span></span>
+            <span class="hint">Optionally extract requirements from PDF, Word, Excel, or text files. This feature has not been extensively tested.</span>
+          </span>
+          <input id="fileUploadBetaEnabled" type="checkbox">
+        </label>
+      </section>
+      <button id="saveSettings" type="button" class="primary action-primary">Save settings</button>
+      <p class="hint privacy-note">CircuIT sends the supplied RFP text to Cisco's internal AI service. Generate and paste a new access token when the current token expires.</p>
+
+      <section class="catalog-settings" aria-labelledby="catalogSettingsTitle">
+        <h2 id="catalogSettingsTitle">Scanned CCW catalogs</h2>
+        <p class="section-intro">Inspect saved component catalogs and choose which UCS server catalog recommendations should use.</p>
+        <div id="catalogLibrary" class="catalog-library"></div>
+      </section>
+    </section>
+  </main>
+
+  <div id="toast" role="status" aria-live="polite" aria-atomic="true"></div>
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

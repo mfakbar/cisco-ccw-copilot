@@ -1,0 +1,26 @@
+{
+  "id": "demo-project",
+  "projectName": "Example C-Series RFP",
+  "createdAt": "2026-08-13T00:00:00.000Z",
+  "updatedAt": "2026-08-13T00:00:00.000Z",
+  "roles": [{
+    "id": "virtualization-host",
+    "name": "Virtualization host",
+    "quantity": 4,
+    "family": "C_SERIES",
+    "requirements": [
+      { "id": "cpuSockets", "label": "Physical CPU sockets per server", "value": 2, "comparison": "exact", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 12", "excerpt": "Each host must contain two physical processors." }] },
+      { "id": "cpuTotalCores", "label": "Physical CPU cores per server", "value": 48, "unit": "cores", "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 12", "excerpt": "Each host must provide at least 48 physical CPU cores." }] },
+      { "id": "cpuClockGhz", "label": "Minimum CPU base clock", "value": 2.6, "unit": "GHz", "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 12", "excerpt": "Processor base frequency must be at least 2.6 GHz." }] },
+      { "id": "memoryGb", "label": "Installed memory per server", "value": 512, "unit": "GB", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 12", "excerpt": "Minimum 512 GB RAM per host." }] },
+      { "id": "localStorageCapacity", "label": "Local storage capacity per server", "value": 3.84, "unit": "TB", "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 13", "excerpt": "Provide at least 3.84 TB usable local storage." }] },
+      { "id": "localStorageCapacityType", "label": "Local storage capacity type", "value": "usable", "comparison": "exact", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 13", "excerpt": "Provide at least 3.84 TB usable local storage." }] },
+      { "id": "bootCapacity", "label": "Boot capacity per drive", "value": 480, "unit": "GB", "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 13", "excerpt": "Two 480 GB boot drives are required." }] },
+      { "id": "bootDriveCount", "label": "Boot drive count", "value": 2, "comparison": "exact", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 13", "excerpt": "Two 480 GB boot drives are required." }] },
+      { "id": "nicCardCount", "label": "NIC card count", "value": 2, "comparison": "exact", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 14", "excerpt": "Two NIC cards, each with four 25 Gbps ports." }] },
+      { "id": "nicPortsPerCard", "label": "Ports per NIC card", "value": 4, "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 14", "excerpt": "Two NIC cards, each with four 25 Gbps ports." }] },
+      { "id": "nicSpeedGbpsPerPort", "label": "NIC speed per port", "value": 25, "unit": "Gbps", "comparison": "atLeast", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 14", "excerpt": "Two NIC cards, each with four 25 Gbps ports." }] },
+      { "id": "maxLeadTimeDays", "label": "Maximum component lead time", "value": 35, "unit": "days", "comparison": "atMost", "status": "explicit", "required": true, "evidence": [{ "documentName": "example-rfp.pdf", "kind": "pdf-page", "locator": "page 4", "excerpt": "All equipment must be deliverable within 35 days." }] }
+    ]
+  }]
+}

@@ -1,0 +1,159 @@
+[
+  {
+    "id": "mandatory-rear-mlom",
+    "requirements": [],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "mlom", "sku": "UCSX-ML-V5Q50G-D", "quantity": 1 }]
+  },
+  {
+    "id": "single-socket-64-core-cpu",
+    "requirements": [{ "id": "cpuSockets", "value": 1 }, { "id": "cpuCoresPerSocket", "value": 64 }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "cpu", "sku": "UCSX-CPU-I6761P", "quantity": 1 }]
+  },
+  {
+    "id": "dual-socket-48-core-cpu",
+    "requirements": [{ "id": "cpuSockets", "value": 2 }, { "id": "cpuCoresPerSocket", "value": 48 }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "cpu", "sku": "UCSX-CPU-I6740P", "quantity": 2 }]
+  },
+  {
+    "id": "balanced-dual-socket-memory",
+    "requirements": [{ "id": "cpuSockets", "value": 2 }, { "id": "cpuCoresPerSocket", "value": 48 }, { "id": "memoryGb", "value": 512, "unit": "GB" }, { "id": "memoryModuleCount", "value": 8 }, { "id": "memoryModuleSizeGb", "value": 64, "unit": "GB" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "memory", "sku": "UCSX-MRX64G2RE5", "quantity": 8 }]
+  },
+  {
+    "id": "reject-more-than-32-dimms",
+    "requirements": [{ "id": "cpuSockets", "value": 2 }, { "id": "memoryModuleCount", "value": 33 }, { "id": "memoryModuleSizeGb", "value": 16, "unit": "GB" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["between 1 and 32 DIMMs"]
+  },
+  {
+    "id": "u3-raid1-exactly-two",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 2 }, { "id": "storageGroup1DriveCapacity", "value": 1.9, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "1" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "raid", "sku": "UCSX-X10C-RAIDF-D", "quantity": 1 }, { "component": "storage", "sku": "UCSX-NVB1T9M2V", "quantity": 2 }],
+    "expectFrontStorageOnly": true,
+    "expectRaid1Two": true,
+    "maxFrontMezzSelections": 1
+  },
+  {
+    "id": "reject-raid1-three-drives",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 3 }, { "id": "storageGroup1DriveCapacity", "value": 1.9, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "1" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["RAID 1 requires exactly 2 drives"]
+  },
+  {
+    "id": "u3-pass-through-six-drives",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 6 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "raid", "sku": "UCSX-X10C-PT4F-D", "quantity": 1 }, { "component": "storage", "sku": "UCSX-NVB960M2V", "quantity": 6 }],
+    "expectFrontStorageOnly": true,
+    "maxFrontMezzSelections": 1
+  },
+  {
+    "id": "reject-seven-u3-drives",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 7 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["at most 6 front-facing U.3 NVMe", "No pass-through HBA"]
+  },
+  {
+    "id": "e3s-pass-through-nine-drives",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 9 }, { "id": "storageGroup1DriveCapacity", "value": 1.6, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "E3.S NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "raid", "sku": "UCSX-X10C-PTE3", "quantity": 1 }, { "component": "storage", "sku": "UCSX-NVE11T6K1P", "quantity": 9 }],
+    "expectFrontStorageOnly": true,
+    "maxFrontMezzSelections": 1
+  },
+  {
+    "id": "reject-ten-e3s-drives",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 10 }, { "id": "storageGroup1DriveCapacity", "value": 1.6, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "E3.S NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["No pass-through HBA"]
+  },
+  {
+    "id": "reject-e3s-hardware-raid",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 2 }, { "id": "storageGroup1DriveCapacity", "value": 1.6, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "E3.S NVMe" }, { "id": "storageGroup1RaidLevel", "value": "1" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["No standard RAID/storage controller supports RAID 1"],
+    "forbiddenComponents": ["storage"]
+  },
+  {
+    "id": "sata-ssd-raid1",
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 2 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "SSD" }, { "id": "storageGroup1DriveInterface", "value": "SATA" }, { "id": "storageGroup1RaidLevel", "value": "1" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "raid", "sku": "UCSX-X10C-RAIDF-D", "quantity": 1 }, { "component": "storage", "sku": "UCSX-SDB960OA1V", "quantity": 2 }],
+    "expectFrontStorageOnly": true,
+    "expectRaid1Two": true
+  },
+  {
+    "id": "m1-fallback-supports-sata",
+    "excludeSkus": ["UCSX-X10C-RAIDF-D"],
+    "requirements": [{ "id": "storageGroup1DriveCount", "value": 2 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "SSD" }, { "id": "storageGroup1DriveInterface", "value": "SATA" }, { "id": "storageGroup1RaidLevel", "value": "1" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "raid", "sku": "UCSX-RAID-M1L6", "quantity": 1 }, { "component": "storage", "sku": "UCSX-SDB960OA1V", "quantity": 2 }]
+  },
+  {
+    "id": "sata-m2-default-mirror",
+    "requirements": [{ "id": "bootCapacity", "value": 480, "unit": "GB" }, { "id": "bootDriveType", "value": "M.2 SATA" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "bootDrive", "sku": "UCSX-M2480OA1V", "quantity": 2 }],
+    "forbiddenRecommendedSkus": ["UCSX-M2I-HWRD-FPS"]
+  },
+  {
+    "id": "sata-m2-explicit-single-jbod",
+    "requirements": [{ "id": "bootCapacity", "value": 480, "unit": "GB" }, { "id": "bootDriveType", "value": "M.2 SATA" }, { "id": "bootDriveCount", "value": 1 }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "bootDrive", "sku": "UCSX-M2480OA1V", "quantity": 1 }],
+    "forbiddenRecommendedSkus": ["UCSX-M2I-HWRD-FPS"]
+  },
+  {
+    "id": "nvme-m2-pass-through",
+    "requirements": [{ "id": "bootCapacity", "value": 960, "unit": "GB" }, { "id": "bootDriveType", "value": "M.2 NVMe" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "bootController", "sku": "UCSX-M2-PT-FPN", "quantity": 1 }, { "component": "bootDrive", "sku": "UCSX-NVM2-960GB", "quantity": 1 }]
+  },
+  {
+    "id": "mandatory-100g-mlom",
+    "requirements": [{ "id": "nicCardCount", "value": 1 }, { "id": "nicPortsPerCard", "value": 2 }, { "id": "nicSpeedGbpsPerPort", "value": 100 }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "mlom", "sku": "UCSX-MLV5D200GV2D", "quantity": 1 }]
+  },
+  {
+    "id": "two-vics-with-two-cpus",
+    "requirements": [{ "id": "cpuSockets", "value": 2 }, { "id": "nicCardCount", "value": 2 }, { "id": "nicPortsPerCard", "value": 4 }, { "id": "nicSpeedGbpsPerPort", "value": 25 }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "sku": "UCSX-ML-V5Q50G-D", "quantity": 1 }, { "sku": "UCSX-ME-V5Q50G-D", "quantity": 1 }]
+  },
+  {
+    "id": "reject-rear-vic-with-one-cpu",
+    "requirements": [{ "id": "cpuSockets", "value": 1 }, { "id": "nicCardCount", "value": 2 }, { "id": "nicPortsPerCard", "value": 4 }, { "id": "nicSpeedGbpsPerPort", "value": 25 }],
+    "expectStatus": "unsatisfied",
+    "forbiddenRecommendedSkus": ["UCSX-ME-V5Q50G-D"],
+    "violationIncludes": ["optional rear mezzanine adapter requires two CPUs"]
+  },
+  {
+    "id": "front-gpu-with-two-u3-drives",
+    "requirements": [{ "id": "gpuCount", "value": 1 }, { "id": "gpuModel", "value": "L4" }, { "id": "gpuDeploymentType", "value": "front mezzanine" }, { "id": "storageGroup1DriveCount", "value": 2 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "complete",
+    "expectedSelections": [{ "component": "gpu", "sku": "UCSX-GPU-L4-MEZZ", "quantity": 1 }, { "component": "gpu", "sku": "UCSX-X10C-GPUFM-D", "quantity": 1 }, { "component": "storage", "sku": "UCSX-NVB960M2V", "quantity": 2 }],
+    "forbiddenRecommendedSkus": ["UCSX-X10C-PT4F-D", "UCSX-X10C-RAIDF-D", "UCSX-RAID-M1L6", "UCSX-X10C-PTE3"],
+    "expectFrontStorageOnly": true,
+    "maxFrontMezzSelections": 1
+  },
+  {
+    "id": "reject-front-gpu-with-three-u3-drives",
+    "requirements": [{ "id": "gpuCount", "value": 1 }, { "id": "gpuModel", "value": "L4" }, { "id": "gpuDeploymentType", "value": "front mezzanine" }, { "id": "storageGroup1DriveCount", "value": 3 }, { "id": "storageGroup1DriveCapacity", "value": 0.96, "unit": "TB" }, { "id": "storageGroup1CapacityType", "value": "raw" }, { "id": "storageGroup1DriveType", "value": "U.3 NVMe" }, { "id": "storageGroup1RaidLevel", "value": "NONE" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["supports at most 2 front U.3 NVMe drives"],
+    "forbiddenComponents": ["storage"]
+  },
+  {
+    "id": "reject-selected-raid-controller-with-front-gpu",
+    "selectedSkus": [{ "sku": "UCSX-X10C-RAIDF-D", "quantity": 1 }],
+    "requirements": [{ "id": "gpuCount", "value": 1 }, { "id": "gpuModel", "value": "L4" }, { "id": "gpuDeploymentType", "value": "front mezzanine" }],
+    "expectStatus": "unsatisfied",
+    "violationIncludes": ["only front-mezzanine connector"]
+  }
+]

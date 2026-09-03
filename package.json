@@ -1,0 +1,38 @@
+{
+  "name": "ccw-boq-copilot",
+  "private": true,
+  "version": "0.1.8",
+  "type": "module",
+  "workspaces": ["packages/*"],
+  "scripts": {
+    "dev": "npm run dev:companion",
+    "build": "npm run build --workspaces",
+    "typecheck": "tsc -b",
+    "test": "vitest run",
+    "lint": "eslint .",
+    "benchmark:requirements": "node benchmark/run-requirement-benchmark.mjs deterministic --summary",
+    "benchmark:requirements:local": "node benchmark/run-requirement-benchmark.mjs qwen3.5:4b-q4_K_M --summary",
+    "benchmark:requirements:structured": "node benchmark/run-structured-rfp-benchmark.mjs",
+    "benchmark:providers": "node benchmark/compare-provider-extraction.mjs",
+    "benchmark:providers:suite": "node benchmark/compare-provider-suite.mjs",
+    "benchmark:llm-first": "node benchmark/verify-llm-first-example.mjs",
+    "benchmark:recommendations": "node benchmark/run-recommendation-benchmark.mjs benchmark/c240-live-catalog.json --summary",
+    "benchmark:recommendations:ground-truth": "node benchmark/run-recommendation-benchmark.mjs benchmark/c240-live-catalog.json --ground-truth --summary",
+    "benchmark:recommendations:x210": "node benchmark/run-x210-recommendation-benchmark.mjs",
+    "benchmark:recommendations:c220": "node benchmark/run-c220-recommendation-benchmark.mjs",
+    "benchmark:recommendations:c240": "node benchmark/run-c240-recommendation-benchmark.mjs",
+    "benchmark:catalog:normalize": "node benchmark/normalize-live-ccw-catalog.mjs",
+    "dev:companion": "npm run dev -w @ccw/companion",
+    "dev:extension": "npm run dev -w @ccw/extension"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.0.0",
+    "@types/chrome": "^0.0.300",
+    "@types/node": "^22.0.0",
+    "esbuild": "^0.25.0",
+    "eslint": "^9.0.0",
+    "typescript": "^5.8.0",
+    "typescript-eslint": "^8.0.0",
+    "vitest": "^3.0.0"
+  }
+}

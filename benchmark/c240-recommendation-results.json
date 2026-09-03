@@ -1,0 +1,305 @@
+{
+  "source": "benchmark/c240-live-catalog.json",
+  "requirementsSource": "structured-ground-truth",
+  "platformProfile": {
+    "model": "UCSC-C240-M8SX",
+    "generation": "M8",
+    "series": "C24X",
+    "rackUnits": 2,
+    "cpuVendor": "intel",
+    "riserSlotNames": [
+      "R1A Slot1 x8 FH",
+      "R1A Slot2 x16 FH",
+      "R1A Slot3 x8 FH",
+      "R1C Slot1 x16 FH",
+      "R1C Slot2 x16 FH",
+      "R2A Slot4 x8 FH",
+      "R2A Slot5 x16 FH",
+      "R2A Slot6 x8 FH",
+      "R2C Slot4 x16 FH",
+      "R2C Slot5 x16 FH",
+      "R3A Slot7 x8 FH",
+      "R3A Slot8 x8 FH",
+      "R3C Slot7 x16 FH"
+    ]
+  },
+  "caseCount": 18,
+  "catalogOptionCount": 510,
+  "complete": 12,
+  "partial": 1,
+  "unsatisfied": 5,
+  "empty": 0,
+  "catalogAnomalies": [],
+  "anomalyCount": 0,
+  "results": [
+    {
+      "id": "cpu-2x-aggregate-memory-explicit-cards",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6737P",
+        "memory: 16x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-MP1L32",
+        "storage: 5x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-N6D25GFO, 1x UCSC-P-N6D25GFO",
+        "riser: 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cpu-spaced-x-dimm-breakdown-quad-nic",
+      "status": "unsatisfied",
+      "components": [],
+      "violations": [
+        "No CPU option meets socket, core, clock-speed, and lead-time requirements.",
+        "No memory option meets capacity, DIMM-count, and lead-time requirements.",
+        "UCSC-RAID-MP1L32 supports RAID 10, but its 21-day lead time exceeds the 14-day target.",
+        "No local-storage option meets capacity and lead-time requirements.",
+        "Only 0 physical NIC slot(s) meet the requirement; 1 requested.",
+        "Requirement memoryGb is not met."
+      ],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cpu-hyphen-total-cores-abstract-ports",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6760P",
+        "memory: 16x UCS-MRX32G1RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 7x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-I8D25GF-D, 1x UCSC-P-I8D25GF-D",
+        "riser: 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "dual-socket-multiple-raid-groups-dual-nic",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6527P",
+        "memory: 8x UCS-MRX32G2RE5",
+        "raid: 1x UCSC-RAID-MP1L32",
+        "storage: 9x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-N6D25GFO",
+        "riser: 1x UCSC-RIS1A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cores-only-jbod-drive-breakdown-two-cards",
+      "status": "unsatisfied",
+      "components": [],
+      "violations": [
+        "No CPU option meets socket, core, clock-speed, and lead-time requirements.",
+        "No memory option meets capacity, DIMM-count, and lead-time requirements.",
+        "UCSC-RAID-MP1L32 supports the requested local storage, but its 21-day lead time exceeds the 14-day target.",
+        "No local-storage option meets capacity and lead-time requirements.",
+        "Only 0 physical NIC slot(s) meet the requirement; 2 requested.",
+        "Requirement memoryGb is not met."
+      ],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "small-cores-no-socket-jbod-base-t",
+      "status": "complete",
+      "components": [
+        "cpu: 1x UCS-CPU-I6507P",
+        "memory: 1x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 1x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-IQ1GC",
+        "riser: 1x UCSC-RIS1A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cpu-x-per-cpu-compact-dimms-quad-port",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6505P",
+        "memory: 8x UCS-MRX32G2RE5",
+        "raid: 1x UCSC-RAID-MP1L32",
+        "storage: 6x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-I8Q25GF-D",
+        "riser: 1x UCSC-RIS1A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cpu-spaced-x-raw-drive-set-dual-ports",
+      "status": "unsatisfied",
+      "components": [],
+      "violations": [
+        "No CPU option meets socket, core, clock-speed, and lead-time requirements.",
+        "No memory option meets capacity, DIMM-count, and lead-time requirements.",
+        "UCSC-RAID-MP1L32 supports the requested local storage, but its 21-day lead time exceeds the 14-day target.",
+        "No local-storage option meets capacity and lead-time requirements.",
+        "No combination of physical NIC slots provides 2 requested port(s).",
+        "Requirement memoryGb is not met.",
+        "Requirement nicTotalPorts is not met."
+      ],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "cpu-hyphen-dimms-usable-raid-abstract-links",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6740P",
+        "memory: 16x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 11x UCS-HDB2T4GS10K4K",
+        "riserNic: 1x UCSC-P-I8D25GF-D, 1x UCSC-P-I8D25GF-D",
+        "riser: 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "dual-socket-mixed-raid-groups-cards-first",
+      "status": "unsatisfied",
+      "components": [
+        "memory: 16x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-MP1L32",
+        "storage: 5x UCS-HDB2T4GS10K4K, 4x UCS-HDB1T2GS10K2N",
+        "riserNic: 1x UCSC-P-IQ10GC-D, 1x UCSC-P-IQ10GC-D",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [
+        "No CPU option meets socket, core, clock-speed, and lead-time requirements."
+      ],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "low-core-ambiguous-capacity-dual-port-card",
+      "status": "unsatisfied",
+      "components": [],
+      "violations": [
+        "No CPU option meets socket, core, clock-speed, and lead-time requirements.",
+        "No memory option meets capacity, DIMM-count, and lead-time requirements.",
+        "Only 0 physical NIC slot(s) meet the requirement; 1 requested.",
+        "Requirement memoryGb is not met."
+      ],
+      "notices": [
+        "Skipped localStorageCapacityType until clarified."
+      ],
+      "anomalies": []
+    },
+    {
+      "id": "cores-only-dimms-raw-ssd-fc-cards",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6530P",
+        "memory: 16x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 8x UCS-SDB960OA1V",
+        "riserNic: 1x UCSC-P-Q6D32GF-D, 1x UCSC-P-Q6D32GF-D",
+        "riser: 1x UCSC-RIS1A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "keyed-two-usable-raid-groups-and-mixed-nics",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6527P",
+        "memory: 32x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 5x UCS-HDB2T4GS10K4K, 2x UCS-NVB7T6M2V",
+        "riserNic: 1x UCSC-P-I8D25GF-D, 1x UCSC-P-I8D25GF-D",
+        "riserNic: 1x UCSC-P-Q6D32GF-D",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "prose-two-raid-groups-and-cards-with-fc",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6520P",
+        "memory: 16x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 5x UCS-HDB2T4GS10K4K, 4x UCS-HDB1T2GS10K2N",
+        "riserNic: 1x UCSC-P-IQ10GC-D, 1x UCSC-P-IQ10GC-D",
+        "riserNic: 1x UCSC-P-Q6D32GF-D",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "keyed-three-typed-raid-groups-and-mixed-nics",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6527P",
+        "memory: 32x UCS-MRX64G2RE5",
+        "raid: 1x UCSC-RAID-M1L16",
+        "storage: 10x UCS-SDB960OA1V, 2x UCS-HDB2T4GS10K4K, 6x UCS-NVB1T9M2V",
+        "riserNic: 1x UCSC-P-I8D25GF-D, 1x UCSC-P-I8D25GF-D",
+        "riserNic: 1x UCSC-P-Q6D32GF-D",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "partial-cpu-memory-usable-storage-and-abstract-mixed-nics",
+      "status": "partial",
+      "components": [
+        "cpu: 2x UCS-CPU-I6520P",
+        "memory: 16x UCS-MRX32G1RE5",
+        "riserNic: 1x UCSC-P-I8D25GF-D, 1x UCSC-P-I8D25GF-D",
+        "riserNic: 1x UCSC-P-Q6D32GF-D, 1x UCSC-P-Q6D32GF-D",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2A-240M8"
+      ],
+      "violations": [],
+      "notices": [
+        "Skipped raidLevel until clarified."
+      ],
+      "anomalies": []
+    },
+    {
+      "id": "c240-gpu-only-hardware",
+      "status": "complete",
+      "components": [
+        "gpu: 1x UCSC-GPU-A16-D, 1x UCSC-GPUAD-240M8",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2C-240M8, 1x UCSC-RIS3B-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    },
+    {
+      "id": "c240-gpu-high-memory-two-cpu",
+      "status": "complete",
+      "components": [
+        "cpu: 2x UCS-CPU-I6520P",
+        "gpu: 1x UCSC-GPU-RTXP6000, 1x UCSC-GPUAD-240M8",
+        "riser: 1x UCSC-RIS1A-240M8, 1x UCSC-RIS2C-240M8, 1x UCSC-RIS3B-240M8"
+      ],
+      "violations": [],
+      "notices": [],
+      "anomalies": []
+    }
+  ]
+}

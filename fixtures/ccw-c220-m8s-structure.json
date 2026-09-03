@@ -1,0 +1,33 @@
+{
+  "fixtureVersion": 1,
+  "source": "sanitized structural observation; no customer, deal, or price data",
+  "platform": "UCSC-C220-M8S",
+  "profile": { "series": "C22X", "rackUnits": 1, "cpuVendor": "intel", "generation": "M8" },
+  "adapter": "ccw-rack-config-v3",
+  "categories": {
+    "Processor Intel Xeon 6": ["80 - 86 Core Processors", "36 - 64 Core Processors", "24 - 32 Core Processors", "8 - 16 Core Processors"],
+    "Memory": ["DDR5 Memory", "Advanced Memory Settings"],
+    "PCIe Riser Option": ["PCIe Riser 1 Option", "PCIe Riser 2 Option", "PCIe Riser 3 Option"],
+    "RAID Controller": ["RAID"],
+    "Local Storage": ["SAS/SATA HDD", "SAS/SATA SSD EP", "SAS/SATA SSD EV", "Self-Encrypted Drives", "PCIe / U.2 NVMe 2.5-in SFF", "PCIe / U.3 NVMe 2.5-in SFF"],
+    "PCIe MLOM": ["PCIe MLOM"],
+    "Riser 1A x16 HH Slot 1": ["PCIe VIC", "PCIe NIC", "PCIe HBA", "PCIe - GPU", "Standard License", "Education License", "NVIDIA Opt Out"],
+    "Riser 2A x16 HH Slot 2": ["PCIe NIC", "PCIe HBA", "PCIe - GPU", "Standard License", "Education License", "NVIDIA Opt Out"],
+    "Riser 3A x16 HH Slot 3": ["PCIe VIC", "PCIe NIC", "PCIe HBA", "PCIe - GPU", "Standard License", "Education License", "NVIDIA Opt Out"],
+    "Riser 1B x16 FH Slot 1": ["PCIe VIC", "PCIe NIC", "PCIe HBA", "PCIe - GPU", "Standard License", "Education License", "NVIDIA Opt Out"],
+    "Riser 3B x16 FH Slot 2": ["PCIe VIC", "PCIe NIC", "PCIe HBA", "PCIe - GPU", "Standard License", "Education License", "NVIDIA Opt Out"],
+    "M.2 BOOT Option": ["M.2 BOOT Option"],
+    "M.2 SATA Drives": ["M.2 SATA Drives"]
+  },
+  "rowContract": {
+    "row": "tr.majorProductList",
+    "sku": ".skutitle",
+    "description": ".itemNameTd",
+    "price": ".unitListPriceCls",
+    "leadTime": ".leadTimeTd",
+    "selection": "input.selectionCheckBox",
+    "quantity": "input.configqty",
+    "categoryNavigation": "h6 a.renderNewClass[kdfid][configpath]",
+    "subgroupNavigation": "#categoryDropDown a.categoryChange[kdfid]"
+  }
+}
