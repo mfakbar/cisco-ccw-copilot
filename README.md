@@ -6,6 +6,32 @@ The user stays in control: review and edit every extracted requirement, approve 
 
 ## User journey at a glance
 
+```mermaid
+flowchart LR
+    subgraph P["Prerequisites"]
+        A["1. Configure"]
+        B["2. Set preferences"]
+        A --> B
+    end
+
+    subgraph Q["Prepare requirements"]
+        C["3. Add RFP"]
+        D["4. Review"]
+        C --> D
+    end
+
+    subgraph R["Build recommendation"]
+        E["5. Scan CCW<br/>Read-only"]
+    end
+
+    subgraph V["Review and apply"]
+        F["6. Approve<br/>One component at a time"]
+    end
+
+    B --> C
+    D --> E --> F
+```
+
 | Step | What you do | What CCW Copilot does |
 | --- | --- | --- |
 | 1. Configure | Choose an extraction provider and model, then enter the required tokens. | Connects the side panel to the local companion and prepares the selected LLM. |
